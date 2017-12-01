@@ -1,0 +1,34 @@
+{
+	"name": "happytales",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest"
+	},
+	"dependencies": {
+		"axios": "^0.17.1",
+		"firebase": "^4.6.2",
+		"lodash": "^4.17.4",
+		"node-fetch": "^1.7.3",
+		"react": "16.0.0",
+		"react-native": "0.50.4",
+		"react-native-card-stack": "^0.2.8",
+		"react-native-elements": "^0.18.4",
+		"react-native-material-bottom-navigation": "^0.6.1",
+		"react-native-router-flux": "^4.0.0-beta.24",
+		"react-native-swipe-cards": "^0.1.1",
+		"react-native-vector-icons": "^4.4.2",
+		"watchman": "^1.0.0"
+	},
+	"devDependencies": {
+		"babel-jest": "21.2.0",
+		"babel-preset-react-native": "4.0.0",
+		"jest": "21.2.1",
+		"prettier": "^1.1.0",
+		"react-test-renderer": "16.0.0"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}
