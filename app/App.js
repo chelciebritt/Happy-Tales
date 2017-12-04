@@ -16,8 +16,6 @@ import Search from './scenes/Search'
 import Popup from './components/Popup'
 
 
-
-
 export default class happytales extends Component{
   render() {
     return (

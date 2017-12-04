@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { FlatList, StyleSheet, Text, View, TouchableOpacity, ScrollView } from "react-native";
 
   import { List, ListItem } from 'react-native-elements'
   import StatusbarBackground from '../components/StatusbarBackground'
@@ -16,10 +16,13 @@ import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native
     }
 
     fetchData = async () => {
-      const response = await fetch("https://randomuser.me/api?results=200");
+      const response = await fetch("https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301");
       const json = await response.json();
+      console.log(response);
       this.setState({ data: json.results });
     };
+
+
 
     render() {
       return (
@@ -39,7 +42,7 @@ import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native
             <ListItem
             roundAvatar
             avatar={{ uri:item.picture.thumbnail }}
-            title={`${item.name.first} ${item.name.last}`}
+            title={`${result.petfinder.pets.pet.name.$t}`}
           />}
           />
           </TouchableOpacity>
@@ -62,6 +65,7 @@ import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native
     container: {
       flex: 1,
       justifyContent: "center",
+      overflow: 'hidden'
     },
     header: {
       alignItems: 'center',

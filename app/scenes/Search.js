@@ -6,14 +6,46 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  Picker
 } from 'react-native';
+
+import { Dropdown } from 'react-native-material-dropdown';
 
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
 import Nav from '../components/Nav'
 
+const types = [{
+   "value": 'Dog',
+ }, {
+   "value": 'Cat',
+ }, {
+   "value": 'Bird',
+ }, {
+   "value": 'Reptile',
+ }, {
+   "value": 'Small Furry',
+ }];
+
+ const sizes = [{
+    "value": 'Small',
+  }, {
+    "value": 'Medium',
+  }, {
+    "value": 'Large',
+  }, {
+    "value": 'Extra Large',
+  }];
+
+  const gender = [{
+     "value": 'Female',
+   }, {
+     "value": 'Male',
+   }];
+
 
 export default class Search extends Component {
+
 
   render() {
     return (
@@ -22,8 +54,6 @@ export default class Search extends Component {
       <View
       style={styles.view}>
       <Text style={styles.heading}>Search</Text>
-
-      <Text style={styles.text}>Location:</Text>
 
           <TextInput
           style={styles.textInput}
@@ -35,9 +65,29 @@ export default class Search extends Component {
           keyboardApperance="light"
           autoCapitalize="none"
           />
-          <Text style={styles.text}>Type:</Text>
+
+          <View style={{ marginRight: 30, marginLeft: 30 }}>
+          <Dropdown
+          label='Select Type'
+          data={types}
+          />
+          </View>
+          <View style={{ marginRight: 30, marginLeft: 30 }}>
+          <Dropdown
+          label='Select Size'
+          data={sizes}
+          />
+          </View>
+          <View style={{ marginRight: 30, marginLeft: 30 }}>
+          <Dropdown
+          label='Select Gender'
+          data={gender}
+          />
+          </View>
+
+
           <View style={styles.login}>
-          <TouchableOpacity style={styles.loginButton} onPress={this._login}>
+          <TouchableOpacity style={styles.loginButton} onPress={this._search}>
           <Text style={styles.loginButtonText}>
           Search
           </Text>
@@ -71,12 +121,10 @@ export default class Search extends Component {
       fontSize: 16,
     },
     textInput: {
-      height: 30,
       borderBottomWidth: 1,
-      borderColor: 'black',
+      borderColor: 'lightgray',
       marginLeft: 30,
       marginRight: 30,
-      marginBottom:10
     },
     view: {
       backgroundColor: 'white',
@@ -85,7 +133,7 @@ export default class Search extends Component {
       marginRight: 30,
       paddingBottom: 30,
       paddingTop: 30,
-      marginTop: 100,
+      marginTop: 75
     },
     text: {
       fontSize: 14,
@@ -97,9 +145,8 @@ export default class Search extends Component {
       heading: {
         fontSize: 28,
         color: '#0575e6',
-        paddingBottom: 10,
+        paddingBottom: 15,
         textAlign: 'center'
-
       }
 
   })

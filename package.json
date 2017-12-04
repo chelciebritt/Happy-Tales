@@ -21,6 +21,7 @@
 		"react-native-vector-icons": "^4.4.2",
 		"watchman": "^1.0.0"
 	},
+	
 	"devDependencies": {
 		"babel-jest": "21.2.0",
 		"babel-preset-react-native": "4.0.0",
