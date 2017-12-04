@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity
 } from 'react-native';
 import flattenStyle from 'flattenStyle'
 import CardStack from 'react-native-card-stack'
@@ -80,18 +81,21 @@ export default class Landing extends Component {
          <View style={Styles.cardText}>
           <Text style={Styles.cardTextMain}>{cardObject.name.$t.toUpperCase()}</Text>
          </View>
-         <View>
-       <Image
-         style={Styles.heart}
-         source={require('../images/likes.png')}
-       />
-     </View>
-     <View>
-   <Image
-     style={Styles.info}
-     source={require('../images/info.png')}
-   />
- </View>
+
+         <View style={Styles.buttons}>
+          <TouchableOpacity>
+           <Image
+             style={Styles.info}
+             source={require('../images/info.png')}
+            />
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Image
+               style={Styles.heart}
+               source={require('../images/likes.png')}
+             />
+             </TouchableOpacity>
+          </View>
        </View>
      )
    }
@@ -100,8 +104,6 @@ export default class Landing extends Component {
      return (
        <ViewContainer>
        <StatusbarBackground />
-
-
        <CardStack
          cardList={this.state.displayedCards}
          renderCard={this.renderCard}
@@ -118,8 +120,6 @@ export default class Landing extends Component {
          upSwipeThreshold={-150}
          downSwipeThreshold={150}
        />
-
-
        <Nav />
        </ViewContainer>
      );
@@ -127,65 +127,44 @@ export default class Landing extends Component {
  }
 
  const Styles = StyleSheet.create({
-   heart: {
-padding: 2
+  buttons: {
+  flexDirection: 'row',
    },
    info: {
-     padding: 2
+     marginRight: 45
+   },
+   heart: {
+     marginLeft: 45
    },
   card: {
-    height: 500,
-    width: 350,
+    position: 'absolute',
+    height: 400,
+    width: 325,
     borderWidth: 1,
     borderColor: '#A9A9A9',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    overflow: 'hidden'
-  },
-  cardTop: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    height: 200,
-    width: 350,
-    backgroundColor: '#D3D3D3'
   },
   cardImage: {
-    position: 'absolute',
-    left: 85,
-    top: 110,
+    alignItems: 'center',
     width: 180,
     height: 180,
     borderRadius: 90,
     borderColor: '#FFF',
     borderWidth: 4,
-    backgroundColor: '#1E90FF'
-  },
-  cardImageBorder: {
-    position: 'absolute',
-    left: 83.5,
-    top: 108.5,
-    width: 183,
-    height: 183,
-    borderRadius: 91.5,
-    backgroundColor: '#A9A9A9'
+    backgroundColor: '#1E90FF',
   },
   cardText: {
-    position: 'absolute',
-    left: 0,
-    top: 300,
-    width: 350,
     alignItems: 'center',
     padding: 20
   },
   cardTextMain: {
     textAlign: 'left',
-    fontSize: 25,
+    fontSize: 36,
     color: '#696969',
     backgroundColor: 'transparent',
     paddingBottom: 10
   },
-
 });
