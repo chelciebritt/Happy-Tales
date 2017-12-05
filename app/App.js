@@ -20,7 +20,7 @@ export default class happytales extends Component{
   render() {
     return (
 
-      <Landing />
+      <Popup />
 
       // <Router>
       // <Scene key={'root'}>

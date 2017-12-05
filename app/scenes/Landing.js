@@ -6,8 +6,11 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
+
 import flattenStyle from 'flattenStyle'
 import CardStack from 'react-native-card-stack'
+import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
 
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
@@ -33,6 +36,7 @@ export default class Landing extends Component {
      try {
        let response = await fetch ('https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301');
        let result = await response.json();
+       console.log(response);
        let resultKeyed = []
        for (var i = 0; i < result.petfinder.pets.pet.length; i++){
          result.petfinder.pets.pet[i].key = result.petfinder.pets.pet[i].name.$t;
@@ -138,6 +142,7 @@ export default class Landing extends Component {
    },
   card: {
     position: 'absolute',
+    top: -20,
     height: 400,
     width: 325,
     borderWidth: 1,
