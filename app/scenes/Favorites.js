@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
+import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
+
   import { List, ListItem } from 'react-native-elements'
   import StatusbarBackground from '../components/StatusbarBackground'
   import Nav from '../components/Nav'

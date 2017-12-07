@@ -11,9 +11,10 @@ import {
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
 import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
 import { firebaseRef } from '../../services/Firebase'
 import { styles } from './styles'
-import { Actions } from 'react-native-router-flux'
+
 
 export default class Login extends Component{
   constructor(props){
@@ -32,7 +33,12 @@ _login() {
   firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
   console.log(error.code);
   console.log(error.message);
+
 });
+}
+
+_login() {
+  Actions.landing()
 }
 
 _register() {

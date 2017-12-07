@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 
 import { Dropdown } from 'react-native-material-dropdown';
+import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
 
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'

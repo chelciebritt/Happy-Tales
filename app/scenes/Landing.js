@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+
 } from 'react-native';
 
 import flattenStyle from 'flattenStyle'
@@ -18,14 +19,16 @@ import Nav from '../components/Nav'
 
 
 
+
 export default class Landing extends Component {
 
   constructor(props) {
    super(props);
-   this.state = {
-     allCards: [],
-     displayedCards: [],
-   };
+ }
+ state = {
+   allCards: [],
+   displayedCards: [],
+   expandedCards: false
  }
 
  componentWillMount() {
@@ -36,7 +39,6 @@ export default class Landing extends Component {
      try {
        let response = await fetch ('https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301');
        let result = await response.json();
-       console.log(response);
        let resultKeyed = []
        for (var i = 0; i < result.petfinder.pets.pet.length; i++){
          result.petfinder.pets.pet[i].key = result.petfinder.pets.pet[i].name.$t;
@@ -77,20 +79,46 @@ export default class Landing extends Component {
      this.handleAdd();
    };
 
-   renderCard(cardObject) {
+   renderCard = (cardObject) => {
+     let details = <View
+    style={{overflow: 'hidden'}}
+      />;
+     console.log(this.state);
+     if(this.state.expandedCards) {
+      details = (
+        <View>
+        <Text>Age: {cardObject.age.$t}</Text>
+        <Text style={Styles.cardTextTerciary}>Gender: {cardObject.sex.$t}</Text>
+        <Text style={Styles.cardTextTerciary}>Breed: {cardObject.breeds.breed[0].$t}</Text>
+        <Text style={Styles.cardTextTerciary}>Mix: {cardObject.mix.$t.toUpperCase()}</Text>
+        <Text style={Styles.cardTextTerciary}>Description: {cardObject.description.$t}</Text>
+        </View>)
+     }
+
      return(
+
        <View style={Styles.card}>
          <View style={Styles.cardImageBorder}/>
          <Image source={{uri: cardObject.media.photos.photo[2].$t}} style={Styles.cardImage}/>
          <View style={Styles.cardText}>
           <Text style={Styles.cardTextMain}>{cardObject.name.$t.toUpperCase()}</Text>
+           {details}
          </View>
 
+
+
          <View style={Styles.buttons}>
-          <TouchableOpacity>
+          <TouchableOpacity
+          style={{overflow: 'hidden'}}
+          onPress= {() => {
+            console.log('Card.onPress:', this.state)
+            this.setState({expandedCards: !this.state.expandedCards})
+          }}
+          >
            <Image
              style={Styles.info}
              source={require('../images/info.png')}
+
             />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -99,14 +127,17 @@ export default class Landing extends Component {
                source={require('../images/likes.png')}
              />
              </TouchableOpacity>
+
+
           </View>
+
        </View>
      )
    }
 
    render() {
      return (
-       <ViewContainer>
+       <ViewContainer style={{overflow: 'hidden'}}>
        <StatusbarBackground />
        <CardStack
          cardList={this.state.displayedCards}
@@ -117,12 +148,9 @@ export default class Landing extends Component {
          cardOpacity={0.5}
          onSwipeRight={this.handleRemove}
          onSwipeLeft={this.handleRemove}
-         onSwipeUp={this.handleRemove}
-         onSwipeDown={this.handleRemove}
          leftSwipeThreshold={-150}
          rightSwipeThreshold={150}
-         upSwipeThreshold={-150}
-         downSwipeThreshold={150}
+         style={{overflow: 'hidden'}}
        />
        <Nav />
        </ViewContainer>
@@ -141,16 +169,16 @@ export default class Landing extends Component {
      marginLeft: 45
    },
   card: {
-    position: 'absolute',
+    flex: 1,
     top: -20,
     height: 400,
     width: 325,
     borderWidth: 1,
     borderColor: '#A9A9A9',
-    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
+    overflow: 'hidden'
   },
   cardImage: {
     alignItems: 'center',
@@ -160,16 +188,29 @@ export default class Landing extends Component {
     borderColor: '#FFF',
     borderWidth: 4,
     backgroundColor: '#1E90FF',
+    overflow: 'hidden',
   },
   cardText: {
     alignItems: 'center',
-    padding: 20
+    padding: 20,
+    overflow: 'hidden'
   },
   cardTextMain: {
     textAlign: 'left',
     fontSize: 36,
     color: '#696969',
     backgroundColor: 'transparent',
-    paddingBottom: 10
+    paddingBottom: 10,
+    overflow: 'hidden'
+
   },
+  cardTextTerciary: {
+    textAlign: 'left',
+    fontSize: 18,
+    color: '#696969',
+    backgroundColor: 'transparent',
+    paddingTop: 10,
+    overflow: 'hidden'
+
+  }
 });

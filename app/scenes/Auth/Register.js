@@ -35,6 +35,10 @@ export default class Register extends Component{
     })
   }
 
+  _register() {
+    Actions.landing()
+  }
+
   render() {
     return (
       <ViewContainer>

@@ -13,14 +13,13 @@ import Landing from './scenes/Landing'
 import Nav from './components/Nav'
 import Favorites from './scenes/Favorites'
 import Search from './scenes/Search'
-import Popup from './components/Popup'
 
 
 export default class happytales extends Component{
   render() {
     return (
 
-      <Popup />
+      <Landing />
 
       // <Router>
       // <Scene key={'root'}>
@@ -33,6 +32,11 @@ export default class happytales extends Component{
       //   <Scene
       //   key={'register'}
       //   component={Register}
+      //   />
+      //   <Scene
+      //   key={'landing'}
+      //   component={Landing}
+      //   hideNavBar={true}
       //   />
       //   </Scene>
       //   </Router>
