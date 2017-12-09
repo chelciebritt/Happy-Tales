@@ -10,8 +10,27 @@ import {
 
 import BottomNavigation, { Tab } from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
 
 export default class Landing extends Component {
+
+  _search() {
+    Actions.search()
+  }
+
+  _landing() {
+    Actions.landing()
+  }
+
+  _login() {
+    Actions.login()
+  }
+
+  _favorites() {
+    Actions.favorites()
+  }
+
   render() {
     return (
 
@@ -19,24 +38,33 @@ export default class Landing extends Component {
         labelColor="#0575e6"
         rippleColor="#0575e6"
         style={{ height: 56, elevation: 8, position: 'absolute', left: 0, bottom: 0, right: 0 }}
-        // onTabChange={(newTabIndex) => alert(`New Tab at position ${newTabIndex}`)}
+        onTabChange={(newTabIndex) => alert(`New Tab at position ${newTabIndex}`)}
       >
         <Tab
           barBackgroundColor='white'
-          label="Pets"
-          icon={<Icon size={24} color="#0575e6" name="pets" />}
+          label="Search"
+          icon={<Icon size={24} color="#0575e6" name="search"
+          onTabChange={this._search}
+          onPress={this._search}
+          />}
         />
         <Tab
           barBackgroundColor='white'
-          label="Search"
-          icon={<Icon size={24} color="#0575e6" name="search" />}
+          label="Pets"
+          icon={<Icon size={24} color="#0575e6" name="pets"
+          onTabChange={this._landing}
+          onPress={this._landing}
+           />}
         />
         <Tab
           barBackgroundColor='white'
           label="Favorites"
-          icon={<Icon size={24} color="#0575e6" name="favorite" />}
+          icon={<Icon size={24} color="#0575e6" name="favorite"
+          onPress={this._favorites}
+           />}
         />
         <Tab
+          onPress={this._login}
           barBackgroundColor='white'
           label="Sign Out"
           icon={<Icon size={24} color="#0575e6" name="https" />}

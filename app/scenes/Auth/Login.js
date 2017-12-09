@@ -38,7 +38,7 @@ _login() {
 }
 
 _login() {
-  Actions.landing()
+  Actions.search()
 }
 
 _register() {

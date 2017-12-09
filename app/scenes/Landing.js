@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  FlatList,
 
 } from 'react-native';
 
@@ -12,6 +13,8 @@ import flattenStyle from 'flattenStyle'
 import CardStack from 'react-native-card-stack'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
+import { List, ListItem } from 'react-native-elements'
+
 
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
@@ -86,59 +89,51 @@ export default class Landing extends Component {
      console.log(this.state);
      if(this.state.expandedCards) {
       details = (
-        <View>
-        <Text>Age: {cardObject.age.$t}</Text>
-        <Text style={Styles.cardTextTerciary}>Gender: {cardObject.sex.$t}</Text>
-        <Text style={Styles.cardTextTerciary}>Breed: {cardObject.breeds.breed[0].$t}</Text>
-        <Text style={Styles.cardTextTerciary}>Mix: {cardObject.mix.$t.toUpperCase()}</Text>
-        <Text style={Styles.cardTextTerciary}>Description: {cardObject.description.$t}</Text>
+        <View style={Styles.ViewContainer}>
+        <Text style={Styles.cardTextSecondary}>Age: {cardObject.age.$t}</Text>
+        <Text style={Styles.cardTextSecondary}>Gender: {cardObject.sex.$t}</Text>
+        <Text style={Styles.cardTextTerciary}>{cardObject.description.$t}</Text>
         </View>)
      }
 
      return(
-
-       <View style={Styles.card}>
+       <View style={ this.state.expandedCards ? Styles.expandedCards : Styles.card }>
          <View style={Styles.cardImageBorder}/>
          <Image source={{uri: cardObject.media.photos.photo[2].$t}} style={Styles.cardImage}/>
+
          <View style={Styles.cardText}>
           <Text style={Styles.cardTextMain}>{cardObject.name.$t.toUpperCase()}</Text>
-           {details}
-         </View>
-
-
-
-         <View style={Styles.buttons}>
-          <TouchableOpacity
-          style={{overflow: 'hidden'}}
-          onPress= {() => {
-            console.log('Card.onPress:', this.state)
-            this.setState({expandedCards: !this.state.expandedCards})
-          }}
-          >
-           <Image
-             style={Styles.info}
-             source={require('../images/info.png')}
-
-            />
-            </TouchableOpacity>
-            <TouchableOpacity>
-             <Image
-               style={Styles.heart}
-               source={require('../images/likes.png')}
+          <View style={Styles.buttons}>
+           <TouchableOpacity
+           onPress= {() => {
+             this.setState({expandedCards: !this.state.expandedCards})
+           }}
+           >
+            <Image
+              style={Styles.info}
+              source={require('../images/info.png')}
              />
              </TouchableOpacity>
+             <TouchableOpacity>
+              <Image
+                style={Styles.heart}
+                source={require('../images/likes.png')}
+              />
+              </TouchableOpacity>
+           </View>
 
-
-          </View>
-
+           {details}
+         </View>
        </View>
+
      )
    }
 
    render() {
      return (
-       <ViewContainer style={{overflow: 'hidden'}}>
-       <StatusbarBackground />
+       <ViewContainer>
+       <View style={Styles.ViewContainer}>
+       {this.props.children}
        <CardStack
          cardList={this.state.displayedCards}
          renderCard={this.renderCard}
@@ -150,8 +145,8 @@ export default class Landing extends Component {
          onSwipeLeft={this.handleRemove}
          leftSwipeThreshold={-150}
          rightSwipeThreshold={150}
-         style={{overflow: 'hidden'}}
        />
+       </View>
        <Nav />
        </ViewContainer>
      );
@@ -159,58 +154,73 @@ export default class Landing extends Component {
  }
 
  const Styles = StyleSheet.create({
+   ViewContainer:{
+     flex:1,
+     flexDirection: 'column',
+     justifyContent: 'flex-start',
+     alignItems: 'stretch',
+   },
   buttons: {
   flexDirection: 'row',
+  paddingBottom: 5,
+  paddingTop: 5
    },
    info: {
-     marginRight: 45
+     marginRight: 45,
    },
    heart: {
-     marginLeft: 45
+     marginLeft: 45,
    },
   card: {
     flex: 1,
     top: -20,
     height: 400,
     width: 325,
-    borderWidth: 1,
-    borderColor: '#A9A9A9',
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF',
-    overflow: 'hidden'
+    backgroundColor: 'white',
+    paddingTop: 10,
+    marginTop: 114,
+  },
+  expandedCards: {
+    flex: 1,
+    height: 580,
+    width: 325,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: 10,
+    marginBottom: 50
   },
   cardImage: {
     alignItems: 'center',
     width: 180,
     height: 180,
     borderRadius: 90,
-    borderColor: '#FFF',
+    borderColor: 'white',
     borderWidth: 4,
-    backgroundColor: '#1E90FF',
-    overflow: 'hidden',
+    backgroundColor: 'white',
   },
   cardText: {
     alignItems: 'center',
     padding: 20,
-    overflow: 'hidden'
   },
   cardTextMain: {
     textAlign: 'left',
-    fontSize: 36,
+    fontSize: 32,
     color: '#696969',
     backgroundColor: 'transparent',
     paddingBottom: 10,
-    overflow: 'hidden'
+  },
+  cardTextSecondary: {
+    textAlign: 'left',
+    fontSize: 16,
+    color: '#696969',
+    backgroundColor: 'transparent',
 
   },
   cardTextTerciary: {
     textAlign: 'left',
-    fontSize: 18,
+    fontSize: 12,
     color: '#696969',
     backgroundColor: 'transparent',
-    paddingTop: 10,
-    overflow: 'hidden'
-
   }
 });

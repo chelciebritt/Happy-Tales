@@ -19,27 +19,28 @@ export default class happytales extends Component{
   render() {
     return (
 
-      <Landing />
+      // <Landing />
 
-      // <Router>
-      // <Scene key={'root'}>
-      // <Scene
-      //   key={'login'}
-      //   component={Login}
-      //   initial={true}
-      //   hideNavBar={true}
-      //   />
-      //   <Scene
-      //   key={'register'}
-      //   component={Register}
-      //   />
-      //   <Scene
-      //   key={'landing'}
-      //   component={Landing}
-      //   hideNavBar={true}
-      //   />
-      //   </Scene>
-      //   </Router>
+      <Router>
+      <Scene key={'root'}>
+  
+        <Scene
+        key={'landing'}
+        component={Landing}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'search'}
+        component={Search}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'favorites'}
+        component={Favorites}
+        hideNavBar={true}
+        />
+        </Scene>
+        </Router>
     );
   }
 }

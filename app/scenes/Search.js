@@ -48,6 +48,9 @@ const types = [{
 
 export default class Search extends Component {
 
+  _search() {
+    Actions.landing()
+  }
 
   render() {
     return (

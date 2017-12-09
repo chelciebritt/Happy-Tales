@@ -18,11 +18,26 @@ import { Actions } from 'react-native-router-flux'
       this.fetchData();
     }
 
-    fetchData = async () => {
-      const response = await fetch("https://randomuser.me/api?results=200");
-      const json = await response.json();
-      this.setState({ data: json.results });
-    };
+    async fetchData() {
+       try {
+         let response = await fetch ('https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301');
+         let result = await response.json();
+         let resultKeyed = []
+         for (var i = 0; i < result.petfinder.pets.pet.length; i++){
+           result.petfinder.pets.pet[i].key = result.petfinder.pets.pet[i].name.$t;
+           resultKeyed.push(result.petfinder.pets.pet[i]);
+         }
+
+         this.setState({
+           data: resultKeyed
+         })
+       } catch (err) {
+           console.log(err)
+           alert(`message: ${err.message}`);
+
+         }
+       }
+
 
     render() {
       return (
@@ -34,18 +49,16 @@ import { Actions } from 'react-native-router-flux'
         </View>
         <View style={styles.container}>
         <List>
-        <TouchableOpacity>
           <FlatList
             data={this.state.data}
             keyExtractor={(x, i) => i}
             renderItem={({ item }) =>
             <ListItem
             roundAvatar
-            avatar={{ uri:item.picture.thumbnail }}
-            title={`${item.name.first} ${item.name.last}`}
+            avatar={{ uri: item.media.photos.photo[0].$t }}
+            title={`${item.name.$t}`}
           />}
           />
-          </TouchableOpacity>
           </List>
         </View>
         <Nav />
@@ -61,6 +74,7 @@ import { Actions } from 'react-native-router-flux'
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'stretch',
+      overflow: 'hidden'
     },
     container: {
       flex: 1,
