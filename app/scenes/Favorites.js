@@ -61,7 +61,7 @@ import { Actions } from 'react-native-router-flux'
           />
           </List>
         </View>
-        <Nav />
+      
         </View>
 
       );

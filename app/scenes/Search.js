@@ -65,6 +65,7 @@ export default class Search extends Component {
           // onChangeText={(text) => this.setState({location: text})}
           // value={this.state.email}
           placeholder="Zip Code"
+          placeholderTextColor = "rgba(0, 0, 0, .38)"
           autoCorrect={false}
           returnKeyType="next"
           keyboardApperance="light"
@@ -100,7 +101,7 @@ export default class Search extends Component {
           </View>
           </View>
 
-      <Nav />
+
       </ViewContainer>
 
     )}
@@ -126,10 +127,12 @@ export default class Search extends Component {
       fontSize: 16,
     },
     textInput: {
-      borderBottomWidth: 1,
-      borderColor: 'lightgray',
+      borderBottomWidth: .70,
+      fontSize: 16,
+      borderColor: 'rgba(0, 0, 0, .38)',
       marginLeft: 30,
       marginRight: 30,
+      paddingVertical: 6
     },
     view: {
       backgroundColor: 'white',

@@ -13,32 +13,46 @@ import Landing from './scenes/Landing'
 import Nav from './components/Nav'
 import Favorites from './scenes/Favorites'
 import Search from './scenes/Search'
+import BottomNavigation, { Tab } from 'react-native-material-bottom-navigation'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import _ from 'lodash'
+import { Actions } from 'react-native-router-flux'
+
 
 
 export default class happytales extends Component{
   render() {
     return (
 
-      // <Landing />
+      // <Search />
 
       <Router>
       <Scene key={'root'}>
-  
+
+      <Scene key="app"
+       tabs={true}
+       hideNavBar={true}>
+       <Scene
+       key={'Search'}
+       component={Search}
+       hideNavBar={true}
+       />
         <Scene
-        key={'landing'}
+        key={'Pets'}
         component={Landing}
         hideNavBar={true}
         />
         <Scene
-        key={'search'}
-        component={Search}
-        hideNavBar={true}
-        />
-        <Scene
-        key={'favorites'}
+        key={'Favorites'}
         component={Favorites}
         hideNavBar={true}
         />
+        <Scene
+        key={'Log Out'}
+        component={Login}
+        hideNavBar={true}
+        />
+        </Scene>
         </Scene>
         </Router>
     );

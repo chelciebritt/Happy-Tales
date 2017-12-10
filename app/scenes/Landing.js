@@ -147,7 +147,7 @@ export default class Landing extends Component {
          rightSwipeThreshold={150}
        />
        </View>
-       <Nav />
+  
        </ViewContainer>
      );
    }
