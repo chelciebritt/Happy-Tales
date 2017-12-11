@@ -8,36 +8,42 @@ import { Actions } from 'react-native-router-flux'
   import StatusbarBackground from '../components/StatusbarBackground'
   import Nav from '../components/Nav'
 
+  import Communications from 'react-native-communications';
+
 
   export default class Favorites extends Component {
     state = {
-      data: []
+      data: [
+{
+    name: 'Nettie',
+    avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/39977315/1/?bust=1511322245&width=95&-fpm.jpg",
+},
+{
+   name: 'Falcor',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/38943568/1/?bust=1511805005&width=95&-fpm.jpg",
+ },
+ {
+   name: 'Wendy',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40011570/1/?bust=1511804256&width=95&-fpm.jpg",
+ },
+ {
+   name: 'Sunny',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40077559/1/?bust=1512408382&width=95&-fpm.jpg",
+ },
+ {
+   name: 'Kelly',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/39797395/1/?bust=1512010173&width=95&-fpm.jpg",
+ },
+ {
+   name: 'Olaf',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/39915995/1/?bust=1510720299&width=95&-fpm.jpg",
+ },
+ {
+   name: 'Kemba',
+   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/36446366/1/?bust=1503438064&width=95&-fpm.jpg",
+ },
+      ]
     };
-
-    componentWillMount() {
-      this.fetchData();
-    }
-
-    async fetchData() {
-       try {
-         let response = await fetch ('https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301');
-         let result = await response.json();
-         let resultKeyed = []
-         for (var i = 0; i < result.petfinder.pets.pet.length; i++){
-           result.petfinder.pets.pet[i].key = result.petfinder.pets.pet[i].name.$t;
-           resultKeyed.push(result.petfinder.pets.pet[i]);
-         }
-
-         this.setState({
-           data: resultKeyed
-         })
-       } catch (err) {
-           console.log(err)
-           alert(`message: ${err.message}`);
-
-         }
-       }
-
 
     render() {
       return (
@@ -49,19 +55,21 @@ import { Actions } from 'react-native-router-flux'
         </View>
         <View style={styles.container}>
         <List>
+        <TouchableOpacity onPress={() => Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')}>
           <FlatList
             data={this.state.data}
             keyExtractor={(x, i) => i}
             renderItem={({ item }) =>
             <ListItem
             roundAvatar
-            avatar={{ uri: item.media.photos.photo[0].$t }}
-            title={`${item.name.$t}`}
+            avatar={{ uri: item.avatar_url }}
+            title={`${item.name}`}
           />}
           />
+          </TouchableOpacity>
           </List>
         </View>
-      
+
         </View>
 
       );
@@ -72,13 +80,10 @@ import { Actions } from 'react-native-router-flux'
     ViewContainer:{
       flex:1,
       flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'stretch',
       overflow: 'hidden'
     },
     container: {
       flex: 1,
-      justifyContent: "center",
       overflow: 'hidden'
     },
     header: {

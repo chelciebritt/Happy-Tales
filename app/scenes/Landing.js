@@ -147,7 +147,7 @@ export default class Landing extends Component {
          rightSwipeThreshold={150}
        />
        </View>
-  
+
        </ViewContainer>
      );
    }
@@ -179,7 +179,7 @@ export default class Landing extends Component {
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: 10,
-    marginTop: 114,
+    marginTop: 335,
   },
   expandedCards: {
     flex: 1,
@@ -188,6 +188,8 @@ export default class Landing extends Component {
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: 10,
+    marginTop: 222,
+
     marginBottom: 50
   },
   cardImage: {
@@ -222,5 +224,6 @@ export default class Landing extends Component {
     fontSize: 12,
     color: '#696969',
     backgroundColor: 'transparent',
+    height: 200
   }
 });
