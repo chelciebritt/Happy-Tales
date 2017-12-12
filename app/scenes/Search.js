@@ -12,10 +12,10 @@ import {
 import { Dropdown } from 'react-native-material-dropdown';
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
-
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
-import Nav from '../components/Nav'
+import Landing from './Landing'
+
 
 const types = [{
    "value": 'Dog',
@@ -49,7 +49,7 @@ const types = [{
 export default class Search extends Component {
 
   _search() {
-    Actions.landing()
+    Actions.Pets()
   }
 
   render() {
@@ -62,8 +62,6 @@ export default class Search extends Component {
 
           <TextInput
           style={styles.textInput}
-          // onChangeText={(text) => this.setState({location: text})}
-          // value={this.state.email}
           placeholder="Zip Code"
           placeholderTextColor = "rgba(0, 0, 0, .38)"
           autoCorrect={false}
@@ -91,9 +89,9 @@ export default class Search extends Component {
           />
           </View>
 
-
           <View style={styles.login}>
-          <TouchableOpacity style={styles.loginButton} onPress={this._search}>
+          <TouchableOpacity style={styles.loginButton}
+          onPress={this._search}>
           <Text style={styles.loginButtonText}>
           Search
           </Text>

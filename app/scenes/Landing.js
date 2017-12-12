@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Alert
 
 } from 'react-native';
 
@@ -114,7 +115,11 @@ export default class Landing extends Component {
               source={require('../images/info.png')}
              />
              </TouchableOpacity>
-             <TouchableOpacity>
+             <TouchableOpacity
+             onPress={() => {
+               Alert.alert('Added to your favorites!');
+  }}
+             >
               <Image
                 style={Styles.heart}
                 source={require('../images/likes.png')}
@@ -147,7 +152,6 @@ export default class Landing extends Component {
          rightSwipeThreshold={150}
        />
        </View>
-
        </ViewContainer>
      );
    }
@@ -180,6 +184,8 @@ export default class Landing extends Component {
     backgroundColor: 'white',
     paddingTop: 10,
     marginTop: 335,
+    shadowOpacity: 2,
+
   },
   expandedCards: {
     flex: 1,

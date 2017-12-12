@@ -36,7 +36,7 @@ export default class Register extends Component{
   }
 
   _register() {
-    Actions.search()
+    Actions.Search()
   }
 
   render() {

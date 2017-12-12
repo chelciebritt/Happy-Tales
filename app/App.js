@@ -24,22 +24,30 @@ export default class happytales extends Component{
   render() {
     return (
 
-      // <Search />
-
       <Router>
       <Scene key={'root'}>
 
+      <Scene
+     key={'login'}
+     component={Login}
+     initial={true}
+     hideNavBar={true}
+     />
+     <Scene
+     key={'register'}
+     component={Register}
+     />
       <Scene key="app"
        tabs={true}
        hideNavBar={true}>
-       <Scene
-       key={'Search'}
-       component={Search}
-       hideNavBar={true}
-       />
         <Scene
         key={'Pets'}
         component={Landing}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'Search'}
+        component={Search}
         hideNavBar={true}
         />
         <Scene

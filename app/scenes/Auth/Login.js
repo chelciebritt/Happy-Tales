@@ -38,7 +38,7 @@ _login() {
 }
 
 _login() {
-  Actions.search()
+  Actions.Search()
 }
 
 _register() {
