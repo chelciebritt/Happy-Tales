@@ -19,41 +19,39 @@ import { List, ListItem } from 'react-native-elements'
 
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
+import Nav from '../components/Nav'
+
+
 
 
 export default class Landing extends Component {
 
   constructor(props) {
    super(props);
-   this.pullImages=this.pullImages.bind(this)
-
  }
  state = {
    allCards: [],
    displayedCards: [],
-   expandedCards: false,
-   image: [],
-   displayedImages: []
+   expandedCards: false
  }
 
  componentWillMount() {
    this.pullUsers();
+
  }
 
+ 
  async pullUsers() {
      try {
        let response = await fetch ('https://api.petfinder.com/pet.find?format=json&key=853aa0b2ae20f99be52beec7f44c1812&output=full&location=80301');
        let result = await response.json();
        let resultKeyed = []
-       let resultPhotos = []
        for (var i = 0; i < result.petfinder.pets.pet.length; i++){
          result.petfinder.pets.pet[i].key = result.petfinder.pets.pet[i].name.$t;
          resultKeyed.push(result.petfinder.pets.pet[i]);
-         this.pullImages();
        }
        this.setState({
-         allCards: resultKeyed,
-         image: resultPhotos
+         allCards: resultKeyed
        });
        let selection = []
        for (var i = 0; i < 3; i++){
@@ -70,38 +68,19 @@ export default class Landing extends Component {
      }
    }
 
-   async pullImages() {
-       try {
-         let response = await fetch ('https://dog.ceo/api/breeds/image/random');
-         let result = await response.json();
-         console.log(result.message);
-       } catch (err) {
-       console.log(err)
-       alert(`message: ${err.message}`);
-       }
-       return result
-       }
-
    handleAdd() {
      if (this.state.allCards.length > 0) {
        let newCard = this.state.allCards.shift()
-       let newImage = this.state.image.shift()
        this.setState({
-         displayedCards: [newCard, ...this.state.displayedCards],
-         displayedImages: [newImage, ...this.state.displayedImages]
-
+         displayedCards: [newCard, ...this.state.displayedCards]
        });
      }
    };
 
    handleRemove = (index) => {
      this.state.displayedCards.pop();
-     this.state.displayedImages.pop();
-
      this.setState({
-       displayedCards: this.state.displayedCards,
-       displayedImages: this.state.displayedImages
-
+       displayedCards: this.state.displayedCards
      });
      this.handleAdd();
    };
@@ -123,7 +102,7 @@ export default class Landing extends Component {
      return(
        <View style={ this.state.expandedCards ? Styles.expandedCards : Styles.card }>
          <View style={Styles.cardImageBorder}/>
-         <Image source={{uri: cardObject.image}} style={Styles.cardImage}/>
+         <Image source={{uri: cardObject.media.photos.photo[2].$t}} style={Styles.cardImage}/>
 
          <View style={Styles.cardText}>
           <Text style={Styles.cardTextMain}>{cardObject.name.$t.toUpperCase()}</Text>
