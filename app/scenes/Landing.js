@@ -184,7 +184,7 @@ export default class Landing extends Component {
     backgroundColor: 'white',
     paddingTop: 10,
     marginTop: 335,
-    shadowOpacity: 2,
+    shadowOpacity: .25,
 
   },
   expandedCards: {

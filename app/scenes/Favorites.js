@@ -53,7 +53,7 @@ export default class Favorites extends Component {
         </View>
         <View style={styles.container}>
         <List>
-        <TouchableOpacity onPress={() => Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')}>
+        <TouchableOpacity onPress={() => Communications.web('https://www.boulderhumane.org/animals/adoption/36692758')}>
           <FlatList
             data={this.state.data}
             keyExtractor={(x, i) => i}
