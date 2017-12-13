@@ -18,6 +18,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
 import Backup from './scenes/Backup'
+import Lol from './scenes/Lol'
+
 
 
 
@@ -26,8 +28,8 @@ export default class happytales extends Component{
   render() {
     return (
 
-<Backup />
 
+<Backup />
 
      //  <Router>
      //  <Scene key={'root'}>
@@ -47,7 +49,7 @@ export default class happytales extends Component{
      //   hideNavBar={true}>
      //    <Scene
      //    key={'Pets'}
-     //    component={Landing}
+     //    component={Backup}
      //    hideNavBar={true}
      //    />
      //    <Scene

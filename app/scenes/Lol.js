@@ -16,55 +16,15 @@ import _ from 'lodash'
 import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
 
+
 import ViewContainer from '../components/ViewContainer'
 import StatusbarBackground from '../components/StatusbarBackground'
+import Nav from '../components/Nav'
 
 
 
 
 export default class Landing extends Component {
-
-    data = [
-      "https://dog.ceo/api/img/retriever-flatcoated/n02099267_3044.jpg",
-
-      "https://dog.ceo/api/img/newfoundland/n02111277_1298.jpg",
-
-      "https://dog.ceo/api/img/saluki/n02091831_11177.jpg",
-
-      "https://dog.ceo/api/img/pinscher-miniature/n02107312_3368.jpg",
-
-      "https://dog.ceo/api/img/terrier-silky/n02097658_4081.jpg",
-
-      "https://dog.ceo/api/img/terrier-westhighland/n02098286_5621.jpg",
-
-      "https://dog.ceo/api/img/collie-border/n02106166_5057.jpg",
-
-      "https://dog.ceo/api/img/stbernard/n02109525_14249.jpg",
-
-      "https://dog.ceo/api/img/shiba/shiba-13.jpg",
-
-      "https://dog.ceo/api/img/terrier-sealyham/n02095889_3734.jpg",
-
-      "https://dog.ceo/api/img/setter-gordon/n02101006_1153.jpg",
-
-      "https://dog.ceo/api/img/retriever-chesapeake/n02099849_2416.jpg",
-
-      "https://dog.ceo/api/img/bullterrier-staffordshire/n02093256_5711.jpg",
-
-      "https://dog.ceo/api/img/terrier-fox/n02095314_2803.jpg",
-
-      "https://dog.ceo/api/img/hound-basset/n02088238_1944.jpg",
-
-      "https://dog.ceo/api/img/dingo/n02115641_1574.jpg",
-
-      "https://dog.ceo/api/img/mountain-swiss/n02107574_140.jpg",
-
-      "https://dog.ceo/api/img/terrier-tibetan/n02097474_4106.jpg",
-
-      "https://dog.ceo/api/img/schipperke/n02104365_8161.jpg"
-]
-
-
 
   constructor(props) {
    super(props);
@@ -72,15 +32,14 @@ export default class Landing extends Component {
  state = {
    allCards: [],
    displayedCards: [],
-   expandedCards: false,
-   url: ''
-
+   expandedCards: false
  }
 
  componentWillMount() {
    this.pullUsers();
 
  }
+
 
  async pullUsers() {
      try {
@@ -124,16 +83,13 @@ export default class Landing extends Component {
        displayedCards: this.state.displayedCards
      });
      this.handleAdd();
-
    };
 
-   getRandom = () => {
-     var randomString = this.data[Math.floor(this.data.length * Math.random())];
-     return randomString
-   }
-
    renderCard = (cardObject) => {
-     let details = <View/>;
+     let details = <View
+    style={{overflow: 'hidden'}}
+      />;
+     console.log(this.state);
      if(this.state.expandedCards) {
       details = (
         <View style={Styles.ViewContainer}>
@@ -146,8 +102,8 @@ export default class Landing extends Component {
      return(
        <View style={ this.state.expandedCards ? Styles.expandedCards : Styles.card }>
          <View style={Styles.cardImageBorder}/>
-         <Image source={{uri: this.getRandom()}}
-         style={Styles.cardImage}/>
+         <Image source={{uri: cardObject.media.photos.photo[2].$t}} style={Styles.cardImage}/>
+
          <View style={Styles.cardText}>
           <Text style={Styles.cardTextMain}>{cardObject.name.$t.toUpperCase()}</Text>
           <View style={Styles.buttons}>
@@ -172,12 +128,13 @@ export default class Landing extends Component {
               />
               </TouchableOpacity>
            </View>
+
            {details}
          </View>
        </View>
 
      )
-   };
+   }
 
    render() {
      return (
@@ -240,6 +197,7 @@ export default class Landing extends Component {
     backgroundColor: 'white',
     paddingTop: 10,
     marginTop: 222,
+
     marginBottom: 50
   },
   cardImage: {
