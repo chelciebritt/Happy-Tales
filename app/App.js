@@ -28,8 +28,7 @@ export default class happytales extends Component{
   render() {
     return (
 
-
-<Backup />
+      <Lol />
 
      //  <Router>
      //  <Scene key={'root'}>

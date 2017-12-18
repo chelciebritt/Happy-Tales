@@ -22,7 +22,7 @@ import StatusbarBackground from '../components/StatusbarBackground'
 
 
 
-export default class Landing extends Component {
+export default class Backup extends Component {
 
     data = [
       "https://dog.ceo/api/img/retriever-flatcoated/n02099267_3044.jpg",
@@ -61,9 +61,22 @@ export default class Landing extends Component {
 
       "https://dog.ceo/api/img/terrier-tibetan/n02097474_4106.jpg",
 
-      "https://dog.ceo/api/img/schipperke/n02104365_8161.jpg"
-]
+      "https://dog.ceo/api/img/schipperke/n02104365_8161.jpg",
 
+      "https://dog.ceo/api/img/poodle-miniature/n02113712_3315.jpg",
+
+      "https://dog.ceo/api/img/sheepdog-shetland/n02105855_14781.jpg",
+
+      "https://dog.ceo/api/img/maltese/n02085936_3217.jpg",
+
+      "https://dog.ceo/api/img/stbernard/n02109525_13154.jpg",
+
+      "https://dog.ceo/api/img/african/n02116738_7170.jpg",
+
+      "https://dog.ceo/api/img/basenji/n02110806_6323.jpg",
+
+      "https://dog.ceo/api/img/spaniel-cocker/n02102318_11704.jpg"
+]
 
 
   constructor(props) {

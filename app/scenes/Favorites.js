@@ -25,8 +25,8 @@ export default class Favorites extends Component {
    avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40011570/1/?bust=1511804256&width=95&-fpm.jpg",
  },
  {
-   name: 'Sunny',
-   avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40077559/1/?bust=1512408382&width=95&-fpm.jpg",
+   name: 'Lexie',
+   avatar_url: "https://media.petango.com/sms/photos/993/19cf714c-9e5c-4e4f-82f4-79fac2359f41.jpg",
  },
  {
    name: 'Kelly',
@@ -40,6 +40,10 @@ export default class Favorites extends Component {
    name: 'Kemba',
    avatar_url: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/36446366/1/?bust=1503438064&width=95&-fpm.jpg",
  },
+ {
+   name: 'Sophie',
+   avatar_url: "https://dog.ceo/api/img/boxer/n02108089_9778.jpg"
+}
       ]
     };
 
@@ -53,7 +57,7 @@ export default class Favorites extends Component {
         </View>
         <View style={styles.container}>
         <List>
-        <TouchableOpacity onPress={() => Communications.web('https://www.boulderhumane.org/animals/adoption/36692758')}>
+        <TouchableOpacity onPress={() => Communications.web('https://www.boulderhumane.org/animals/adoption/37125620')}>
           <FlatList
             data={this.state.data}
             keyExtractor={(x, i) => i}
