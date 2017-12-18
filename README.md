@@ -16,7 +16,7 @@ Happy Tales is a mobile app made with React Native that connects shelter pets to
 
 ## Images
 
-![Screenshot1](screenshots/splash.png "screenshots of app")
+![Screenshot1](screenshots/capstone-splashscreen.png "screenshots of app")
 ![Screenshot3](screenshots/background.png "screenshots of app")
 ![Screenshot2](screenshots/login.png "screenshots of app")
 ![Screenshot4](screenshots/search.png "screenshots of app")
