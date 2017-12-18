@@ -28,47 +28,46 @@ export default class happytales extends Component{
   render() {
     return (
 
-      <Lol />
 
-     //  <Router>
-     //  <Scene key={'root'}>
-     //
-     //  <Scene
-     // key={'login'}
-     // component={Login}
-     // initial={true}
-     // hideNavBar={true}
-     // />
-     // <Scene
-     // key={'register'}
-     // component={Register}
-     // />
-     //  <Scene key="app"
-     //   tabs={true}
-     //   hideNavBar={true}>
-     //    <Scene
-     //    key={'Pets'}
-     //    component={Backup}
-     //    hideNavBar={true}
-     //    />
-     //    <Scene
-     //    key={'Search'}
-     //    component={Search}
-     //    hideNavBar={true}
-     //    />
-     //    <Scene
-     //    key={'Favorites'}
-     //    component={Favorites}
-     //    hideNavBar={true}
-     //    />
-     //    <Scene
-     //    key={'Log Out'}
-     //    component={Login}
-     //    hideNavBar={true}
-     //    />
-     //    </Scene>
-     //    </Scene>
-     //    </Router>
+      <Router>
+      <Scene key={'root'}>
+
+      <Scene
+     key={'login'}
+     component={Login}
+     initial={true}
+     hideNavBar={true}
+     />
+     <Scene
+     key={'register'}
+     component={Register}
+     />
+      <Scene key="app"
+       tabs={true}
+       hideNavBar={true}>
+        <Scene
+        key={'Pets'}
+        component={Backup}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'Search'}
+        component={Search}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'Favorites'}
+        component={Favorites}
+        hideNavBar={true}
+        />
+        <Scene
+        key={'Log Out'}
+        component={Login}
+        hideNavBar={true}
+        />
+        </Scene>
+        </Scene>
+        </Router>
     );
   }
 }
