@@ -1,4 +1,4 @@
-# The Daily Reflection
+# Happy Tales
 
 Happy Tales is a mobile app made with React Native that connects shelter pets to furever homes because everyone should have a pet in their life, and every pet should have a human.
 
